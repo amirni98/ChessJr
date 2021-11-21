@@ -1,0 +1,40 @@
+
+body {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+
+.board {
+    border: 2px solid #000000;
+}
+
+.table {
+    height: 100%;
+    width: 100%;
+    border-spacing: 0;
+
+}
+
+
+.cell  {
+    height: 12.5%;
+    width: 12.5%;
+    
+}
+
+i {
+    width: 32px;
+    height: 32px;
+
+
+}
+
+.log {
+    background-color: cadetblue;
+    min-width: 100px;
+    min-height: 100px;
+    width: max-content;
+    height: max-content;
+    padding: 10px;
+}
