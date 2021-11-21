@@ -4,6 +4,7 @@ const log_txt   = document.getElementById('log');
 let log_counter = 1;
 const size      = 512;
 const colors    = ['white' , 'black'];
+let white       = true;
 
 
 function styling() {
@@ -176,6 +177,7 @@ function arrange(){
 
 function move(item,target){
     target.append(item);
+    white = !(white);
 }
 
 function highlight_remover(id) {
@@ -1540,12 +1542,15 @@ pieces.forEach(item => {
     item.style.width    = `${size/16}px`;
     item.style.height   = `${size/16}px`;
     item.addEventListener('click', data => {
+        if(     (data.path[0].id.match('_w'))&&(white)
+            ||  (data.path[0].id.match('_b'))&&(!white)){
         highlight_remover('#highlight');
         highlight_remover('piece');
         data.path[0].style.color = 'yellow';
         road_map(item);
         //move(item,cells[2][3])
         //console.log(data,data.path[0],cells[3][3]);
+        }
     });
 });
 
