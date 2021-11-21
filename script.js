@@ -1537,8 +1537,8 @@ pieces.forEach(item => {
     console.log('he');
     item.style.fontSize = `${size/16}px`;
     item.style.cursor   = `pointer`;
-    //item.style.width    = `${size/16}px`;
-    //item.style.height   = `${size/16}px`;
+    item.style.width    = `${size/16}px`;
+    item.style.height   = `${size/16}px`;
     item.addEventListener('click', data => {
         highlight_remover('#highlight');
         highlight_remover('piece');
