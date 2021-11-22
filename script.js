@@ -8,7 +8,7 @@ let size;
 const colors    = ['white' , 'black'];
 let white       = true;
 let even = 'click';
-log_txt.append(window.innerWidth,'div');
+log_txt.append(window.innerWidth,'txt');
 
 
 
@@ -1572,6 +1572,7 @@ pieces.forEach(item => {
     item.style.width    = `${size/16}px`;
     item.style.height   = `${size/16}px`;
     item.addEventListener(even, data => {
+        log_txt.append('txt');
         if(     (data.path[0].id.match('_w'))&&(white)
             ||  (data.path[0].id.match('_b'))&&(!white)){
         highlight_remover('#highlight');
