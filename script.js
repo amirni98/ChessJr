@@ -2,11 +2,21 @@ const board     = document.getElementById('board');
 const table     = document.getElementById('table');
 const log_txt   = document.getElementById('log');
 let log_counter = 1;
+const OS        = navigator.userAgent;
 const width     = window.innerWidth;
 let size;
 const colors    = ['white' , 'black'];
 let white       = true;
+let even = 'click';
 log_txt.append(window.innerWidth);
+
+
+
+if((OS.match('iPhone') || OS.match('iPad'))){
+    even = 'touchstart';
+    log_txt.append(window.innerWidth);
+}
+
 if(width < 400)
     size      = 312;
 else
@@ -1491,7 +1501,7 @@ function highlight(item,target) {
     h.style.left        = '0';
     h.style.zIndex      = '5';
 
-    h.addEventListener('click',(element) => {
+    h.addEventListener(even,(element) => {
         //console.log(target.children.length);
         highlight_remover('#highlight');
         
@@ -1548,7 +1558,7 @@ pieces.forEach(item => {
     item.style.cursor   = `pointer`;
     item.style.width    = `${size/16}px`;
     item.style.height   = `${size/16}px`;
-    item.addEventListener('click', data => {
+    item.addEventListener(even, data => {
         if(     (data.path[0].id.match('_w'))&&(white)
             ||  (data.path[0].id.match('_b'))&&(!white)){
         highlight_remover('#highlight');
