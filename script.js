@@ -1572,10 +1572,10 @@ pieces.forEach(item => {
     item.style.width    = `${size/16}px`;
     item.style.height   = `${size/16}px`;
     item.addEventListener(even, data => {
-        log_txt.append(data.path[0].id);
+        log_txt.append(item.id);
         if(     (data.path[0].id.match('_w'))&&(white)
             ||  (data.path[0].id.match('_b'))&&(!white)){
-        log_txt.append('txt');
+        log_txt.append(item.id);
         highlight_remover('#highlight');
         highlight_remover('piece');
         data.path[0].style.color = 'yellow';
