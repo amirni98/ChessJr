@@ -8,7 +8,7 @@ let size;
 const colors    = ['white' , 'black'];
 let white       = true;
 let even = 'click';
-log_txt.append(window.innerWidth,'curs');
+log_txt.append(window.innerWidth,'cur');
 
 
 
@@ -17,6 +17,14 @@ if((OS.match('iPhone') || OS.match('iPad'))){
     log_txt.append(window.innerWidth);
 }
 
+table.setAttribute('onTouchStart', " ");
+
+document.querySelectorAll('tr').forEach((item) => {
+    item.setAttribute('onTouchStart', " ");
+});
+document.querySelectorAll('th').forEach((item) => {
+    item.setAttribute('onTouchStart', " ");
+});
 if(width < 400)
     size      = 312;
 else
