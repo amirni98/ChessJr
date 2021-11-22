@@ -6,7 +6,7 @@ const width     = window.innerWidth;
 let size;
 const colors    = ['white' , 'black'];
 let white       = true;
-
+log_txt.append(window.innerWidth);
 if(width < 400)
     size      = 312;
 else
