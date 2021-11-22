@@ -136,6 +136,7 @@ for (p = 0 ; p < 8 ; p++){
     pawn_b[p].id            = 'pawn_b'
     pawn_b[p].style.color   = colors[1];
     pawn_b[p].setAttribute('data-flag' , 'true');
+    
 }
 
 // assigning cells
@@ -176,6 +177,11 @@ function arrange(){
 
     for (p = 0 ; p < 8 ; p++){
         cells[1][p].append(pawn[p]);
+        const button = document.createElement('BUTTON');
+button.addEventListener('click' ,() => {
+        log_txt.append("txt");
+} );
+cells[1][p].append(button);
     }
 
     cells[7][0].append(rook_l_b);
@@ -1571,11 +1577,7 @@ pieces.forEach(item => {
     });
 });
 
-const button = document.createElement('BUTTON');
-button.addEventListener('click' ,() => {
-        log_txt.append("txt");
-} );
-table.append(button);
+
 
 
 
