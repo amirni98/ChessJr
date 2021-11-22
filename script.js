@@ -8,7 +8,7 @@ let size;
 const colors    = ['white' , 'black'];
 let white       = true;
 let even = 'click';
-log_txt.append(window.innerWidth,'cu');
+log_txt.append(window.innerWidth,'div');
 
 
 
