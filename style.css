@@ -34,3 +34,11 @@ body {
     padding: 10px;
     margin: 10px;
 }
+
+button {
+    background-color: transparent;
+    outline: none;
+    height: max-content;
+    width: max-content;
+    border: none;
+}
