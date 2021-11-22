@@ -6,7 +6,7 @@ const width     = window.innerWidth;
 let size;
 const colors    = ['white' , 'black'];
 let white       = true;
-log_txt.append(window.innerWidth);
+//log_txt.append(window.innerWidth);
 if(width < 400)
     size      = 312;
 else
@@ -18,6 +18,8 @@ function styling() {
     board.style.backgroundColor = 'orange';
 
 }
+
+
 
 
 // icons from fontawesome
@@ -1546,6 +1548,7 @@ pieces.forEach(item => {
     item.style.cursor   = `pointer`;
     item.style.width    = `${size/16}px`;
     item.style.height   = `${size/16}px`;
+    item.setAttribute('onclick' , '');
     item.addEventListener('click', data => {
         if(     (data.path[0].id.match('_w'))&&(white)
             ||  (data.path[0].id.match('_b'))&&(!white)){
