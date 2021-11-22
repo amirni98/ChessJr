@@ -2,10 +2,15 @@ const board     = document.getElementById('board');
 const table     = document.getElementById('table');
 const log_txt   = document.getElementById('log');
 let log_counter = 1;
-const size      = 512;
+const width     = window.innerWidth;
+let size;
 const colors    = ['white' , 'black'];
 let white       = true;
 
+if(width < 400)
+    size      = 312;
+else
+    size      = 512;
 
 function styling() {
     board.style.width =size+'px';
