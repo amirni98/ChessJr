@@ -159,6 +159,7 @@ for (i = 0 ; i < 8 ; i++) {
         //cells[i][j].style.alignItems = 'center';
         //cells[i][j].style.display = 'flex';
         //cells[i][j].style.alignItem = 'center';
+        //console.log(cells[i][j].style.alignItem);
     }
 
 }
@@ -176,6 +177,7 @@ function arrange(){
 
     for (p = 0 ; p < 8 ; p++){
         cells[1][p].append(pawn[p]);
+
     }
 
     cells[7][0].append(rook_l_b);
@@ -201,11 +203,12 @@ function highlight_remover(id) {
     if(id == '#highlight'){
         const all_e = document.querySelectorAll(id);
         all_e.forEach(element => {
+            //console.log(element);
             element.parentElement.removeChild(element);
         });
     }
     else{
-        const all_e = document.querySelectorAll('BUTTON');
+        const all_e = document.querySelectorAll('I');
         all_e.forEach(item => {
             if(item.id.match('_b'))
                 item.style.color = colors[1];
@@ -630,6 +633,7 @@ function road_map(item) {
                 end_row = i;
                 continue;}
             j = column;
+            console.log(i,j);
             if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_w'))){
                 end_row = i-1;
                 break;
@@ -655,6 +659,7 @@ function road_map(item) {
             }
             start_row = i;
         }
+        console.log(start_row, end_row);
         for(i = start_row ; i <= end_row ; i++){
             j = column;
             if(cells[i][j].children.length == 0){
@@ -670,6 +675,7 @@ function road_map(item) {
                 end_column = j;
                 continue;}
             i = row;
+            console.log(i,j);
             if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_w'))){
                 end_column = j-1;
                 break;
@@ -723,6 +729,7 @@ function road_map(item) {
                 end_row = i;
                 continue;}
             j = column;
+            console.log(i,j);
             if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_b'))){
                 end_row = i-1;
                 break;
@@ -748,6 +755,7 @@ function road_map(item) {
             }
             start_row = i;
         }
+        console.log(start_row, end_row);
         for(i = start_row ; i <= end_row ; i++){
             j = column;
             if(cells[i][j].children.length == 0){
@@ -763,6 +771,7 @@ function road_map(item) {
                 end_column = j;
                 continue;}
             i = row;
+            console.log(i,j);
             if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_b'))){
                 end_column = j-1;
                 break;
@@ -900,18 +909,22 @@ function road_map(item) {
 
                 for(i = start_row_down, j = start_column_down ; (i <= end_row_up && j <= end_column_up) ; i++,  j++){
                     if(cells[i][j].children.length == 0){
+                        console.log('khali',i,j);
                         cells[i][j].append(highlight(item,cells[i][j]));
                     }
                     else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_w'))){
+                        console.log('por',i,j);
                         cells[i][j].append(highlight(item,cells[i][j]));
                     }
                 
             }       
             for(i = start_row_up, j = start_column_up ; (i >= end_row_down && j <= end_column_down) ; i--,  j++){
                 if(cells[i][j].children.length == 0){
+                    console.log('khali',i,j);
                     cells[i][j].append(highlight(item,cells[i][j]));
                 }
                 else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_w'))){
+                    console.log('por',i,j);
                     cells[i][j].append(highlight(item,cells[i][j]));
                 }
             
@@ -1017,18 +1030,22 @@ function road_map(item) {
     
                     for(i = start_row_down, j = start_column_down ; (i <= end_row_up && j <= end_column_up) ; i++,  j++){
                         if(cells[i][j].children.length == 0){
+                            console.log('khali',i,j);
                             cells[i][j].append(highlight(item,cells[i][j]));
                         }
                         else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_b'))){
+                            console.log('por',i,j);
                             cells[i][j].append(highlight(item,cells[i][j]));
                         }
                     
                 }       
                 for(i = start_row_up, j = start_column_up ; (i >= end_row_down && j <= end_column_down) ; i--,  j++){
                     if(cells[i][j].children.length == 0){
+                        console.log('khali',i,j);
                         cells[i][j].append(highlight(item,cells[i][j]));
                     }
                     else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_b'))){
+                        console.log('por',i,j);
                         cells[i][j].append(highlight(item,cells[i][j]));
                     }
                 
@@ -1055,6 +1072,7 @@ function road_map(item) {
                 end_row = i;
                 continue;}
             j = column;
+            console.log(i,j);
             if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_w'))){
                 end_row = i-1;
                 break;
@@ -1083,6 +1101,7 @@ function road_map(item) {
             }
             start_row = i;
         }
+        console.log(start_row, end_row);
         for(i = start_row ; i <= end_row ; i++){
             j = column;
             if(cells[i][j].children.length == 0){
@@ -1099,6 +1118,7 @@ function road_map(item) {
                 continue;
             }
             i = row;
+            console.log(i,j);
             if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_w'))){
                 end_column = j-1;
                 break;
@@ -1224,18 +1244,22 @@ function road_map(item) {
     
         for(i = start_row_down, j = start_column_down ; (i <= end_row_up && j <= end_column_up) ; i++,  j++){
             if(cells[i][j].children.length == 0){
+                console.log('khali',i,j);
                 cells[i][j].append(highlight(item,cells[i][j]));
             }
             else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_w'))){
+                console.log('por',i,j);
                 cells[i][j].append(highlight(item,cells[i][j]));
             }
                     
         }       
         for(i = start_row_up, j = start_column_up ; (i >= end_row_down && j <= end_column_down) ; i--,  j++){
             if(cells[i][j].children.length == 0){
+                console.log('khali',i,j);
                 cells[i][j].append(highlight(item,cells[i][j]));
             }
             else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_w'))){
+                console.log('por',i,j);
                 cells[i][j].append(highlight(item,cells[i][j]));
             }
                 
@@ -1262,6 +1286,7 @@ function road_map(item) {
                 end_row = i;
                 continue;}
             j = column;
+            console.log(i,j);
             if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_b'))){
                 end_row = i-1;
                 break;
@@ -1290,6 +1315,7 @@ function road_map(item) {
             }
             start_row = i;
         }
+        console.log(start_row, end_row);
         for(i = start_row ; i <= end_row ; i++){
             j = column;
             if(cells[i][j].children.length == 0){
@@ -1306,6 +1332,7 @@ function road_map(item) {
                 continue;
             }
             i = row;
+            console.log(i,j);
             if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_b'))){
                 end_column = j-1;
                 break;
@@ -1431,18 +1458,22 @@ function road_map(item) {
     
         for(i = start_row_down, j = start_column_down ; (i <= end_row_up && j <= end_column_up) ; i++,  j++){
             if(cells[i][j].children.length == 0){
+                console.log('khali',i,j);
                 cells[i][j].append(highlight(item,cells[i][j]));
             }
             else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_b'))){
+                console.log('por',i,j);
                 cells[i][j].append(highlight(item,cells[i][j]));
             }
                     
         }       
         for(i = start_row_up, j = start_column_up ; (i >= end_row_down && j <= end_column_down) ; i--,  j++){
             if(cells[i][j].children.length == 0){
+                console.log('khali',i,j);
                 cells[i][j].append(highlight(item,cells[i][j]));
             }
             else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_b'))){
+                console.log('por',i,j);
                 cells[i][j].append(highlight(item,cells[i][j]));
             }
                 
@@ -1459,6 +1490,7 @@ function highlight(item,target) {
 
     if(target.children.length == 1){
         h.style.backgroundColor = '#0054fcba';
+        //console.log('hey',target.children);
     }
     else{
         h.style.backgroundColor = '#5700fcba';
@@ -1471,7 +1503,8 @@ function highlight(item,target) {
     h.style.left        = '0';
     h.style.zIndex      = '5';
 
-    h.addEventListener('click',(element) => {
+    h.addEventListener(even,(element) => {
+        //console.log(target.children.length);
         highlight_remover('#highlight');
         
         if(target.children.length == 1){
@@ -1481,6 +1514,7 @@ function highlight(item,target) {
                 txt.textContent     = log_counter + '. ' + target.children[0].id + ' removed';
                 log_counter++;
                 log_txt.append(txt);
+                console.log(target.children[0].id, 'removed');
                 target.removeChild(target.children[0]);  
             }
         }
@@ -1492,6 +1526,7 @@ function highlight(item,target) {
         else{
             move(item,target);
             if(item.id.match('pawn')){
+                console.log(item.getAttribute('data-flag'));
                 item.setAttribute('data-flag' , 'false');
 
                 if(parseInt(item.parentElement.id[1]) == 8){
@@ -1517,28 +1552,23 @@ arrange();
 
 //the size of the pieces
 const pieces = document.querySelectorAll('I');
+console.log(pieces);
 
 pieces.forEach(item => {
+    console.log('he');
     item.style.fontSize = `${size/16}px`;
     item.style.cursor   = `pointer`;
     item.style.width    = `${size/16}px`;
     item.style.height   = `${size/16}px`;
-    const button = document.createElement('BUTTON');
-    item.parentElement.append(button);
-    button.append(item);
-    button.id = item.id;
-    button.setAttribute('data-flag' , item.getAttribute('data-flag'));
-    //button.style.width    = `${size/16}px`;
-    //button.style.height   = `${size/16}px`;
-
-    button.addEventListener('click', data => {
-        if(     (data.path[1].id.match('_w'))&&(white)
-            ||  (data.path[1].id.match('_b'))&&(!white)){
+    item.addEventListener(even, data => {
+        if(     (data.path[0].id.match('_w'))&&(white)
+            ||  (data.path[0].id.match('_b'))&&(!white)){
         highlight_remover('#highlight');
         highlight_remover('piece');
-        data.path[1].style.color = 'yellow';
-        road_map(button);
+        data.path[0].style.color = 'yellow';
+        road_map(item);
         //move(item,cells[2][3])
+        //console.log(data,data.path[0],cells[3][3]);
         }
     });
 });
