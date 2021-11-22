@@ -12,6 +12,16 @@ if(width < 400)
 else
     size      = 512;
 
+const tr = document.querySelectorAll('.trow');
+tr.forEach(item => {
+    item.setAttribute('onclick' , ' ');
+})
+
+const tc = document.querySelectorAll('th');
+tc.forEach(item => {
+    item.setAttribute('onclick' , ' ');
+})
+
 function styling() {
     board.style.width =size+'px';
     board.style.height =size+'px';
@@ -1548,7 +1558,7 @@ pieces.forEach(item => {
     item.style.cursor   = `pointer`;
     item.style.width    = `${size/16}px`;
     item.style.height   = `${size/16}px`;
-    item.setAttribute('onclick' , '');
+    item.setAttribute('onclick' , ' ');
     item.addEventListener('click', data => {
         if(     (data.path[0].id.match('_w'))&&(white)
             ||  (data.path[0].id.match('_b'))&&(!white)){
