@@ -1571,14 +1571,15 @@ pieces.forEach(item => {
     item.style.cursor   = `pointer`;
     item.style.width    = `${size/16}px`;
     item.style.height   = `${size/16}px`;
-    item.addEventListener(even, data => {
-        log_txt.append(item.id);
-        if(     (data.path[0].id.match('_w'))&&(white)
-            ||  (data.path[0].id.match('_b'))&&(!white)){
-        log_txt.append(item.id);
+    const id = item.id;
+    item.addEventListener('click', (data) => {
+        log_txt.append(id);
+        if(     (id.match('_w'))&&(white)
+            ||  (id.match('_b'))&&(!white)){
+        log_txt.append(id);
         highlight_remover('#highlight');
         highlight_remover('piece');
-        data.path[0].style.color = 'yellow';
+        item.style.color = 'yellow';
         road_map(item);
         //move(item,cells[2][3])
         //console.log(data,data.path[0],cells[3][3]);
