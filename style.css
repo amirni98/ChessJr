@@ -6,6 +6,9 @@ body {
     align-items: center;
     margin: 0;
 }
+*:not(html,body) {
+    cursor: pointer;
+}
 
 .board {
     border: 2px solid #000000;
