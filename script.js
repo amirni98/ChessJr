@@ -8,7 +8,7 @@ let size;
 const colors    = ['white' , 'black'];
 let white       = true;
 let even = 'click';
-log_txt.append(window.innerWidth,'cur');
+log_txt.append(window.innerWidth,'cu');
 
 
 
@@ -18,12 +18,15 @@ if((OS.match('iPhone') || OS.match('iPad'))){
 }
 
 table.setAttribute('onTouchStart', " ");
+table.setAttribute('onClick', " ");
 
 document.querySelectorAll('tr').forEach((item) => {
     item.setAttribute('onTouchStart', " ");
+    item.setAttribute('onClick', " ");
 });
 document.querySelectorAll('th').forEach((item) => {
     item.setAttribute('onTouchStart', " ");
+    item.setAttribute('onClick', " ");
 });
 if(width < 400)
     size      = 312;
