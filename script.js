@@ -1575,6 +1575,7 @@ pieces.forEach(item => {
         log_txt.append('txt');
         if(     (data.path[0].id.match('_w'))&&(white)
             ||  (data.path[0].id.match('_b'))&&(!white)){
+        log_txt.append('txt');
         highlight_remover('#highlight');
         highlight_remover('piece');
         data.path[0].style.color = 'yellow';
