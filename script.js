@@ -1571,6 +1571,12 @@ pieces.forEach(item => {
     });
 });
 
+const button = document.createElement('BUTTON');
+button.addEventListener('click' ,() => {
+        log_txt.append("txt");
+} );
+table.append(button);
+
 
 
 
