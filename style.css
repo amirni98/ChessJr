@@ -6,9 +6,7 @@ body {
     align-items: center;
     margin: 0;
 }
-*:not(html,body) {
-    cursor: pointer;
-}
+
 
 .board {
     border: 2px solid #000000;
@@ -18,7 +16,6 @@ body {
     height: 100%;
     width: 100%;
     border-spacing: 0;
-    cursor: pointer;
 
 }
 
@@ -39,10 +36,3 @@ body {
     margin: 10px;
 }
 
-button {
-    background-color: transparent;
-    outline: none;
-    height: max-content;
-    width: max-content;
-    border: none;
-}

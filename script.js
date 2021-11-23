@@ -7,17 +7,17 @@ const width     = window.innerWidth;
 let size;
 const colors    = ['white' , 'black'];
 let white       = true;
-let even = 'click';
-log_txt.append(window.innerWidth,'txt');
+//let even = 'click';
+//log_txt.append(window.innerWidth,'txt');
 
 
 
-if((OS.match('iPhone') || OS.match('iPad'))){
+/*if((OS.match('iPhone') || OS.match('iPad'))){
     even = 'touchstart';
     log_txt.append(window.innerWidth);
-}
+}*/
 
-table.setAttribute('onTouchStart', " ");
+/*table.setAttribute('onTouchStart', " ");
 table.setAttribute('onClick', " ");
 
 document.querySelectorAll('tr').forEach((item) => {
@@ -28,6 +28,8 @@ document.querySelectorAll('th').forEach((item) => {
     item.setAttribute('onTouchStart', " ");
     item.setAttribute('onClick', " ");
 });
+*/
+
 if(width < 400)
     size      = 312;
 else
@@ -170,7 +172,7 @@ for (i = 0 ; i < 8 ; i++) {
         //cells[i][j].style.alignItems = 'center';
         //cells[i][j].style.display = 'flex';
         //cells[i][j].style.alignItem = 'center';
-        //console.log(cells[i][j].style.alignItem);
+        ////console.log(cells[i][j].style.alignItem);
     }
 
 }
@@ -644,7 +646,7 @@ function road_map(item) {
                 end_row = i;
                 continue;}
             j = column;
-            console.log(i,j);
+            //console.log(i,j);
             if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_w'))){
                 end_row = i-1;
                 break;
@@ -670,7 +672,7 @@ function road_map(item) {
             }
             start_row = i;
         }
-        console.log(start_row, end_row);
+        //console.log(start_row, end_row);
         for(i = start_row ; i <= end_row ; i++){
             j = column;
             if(cells[i][j].children.length == 0){
@@ -686,7 +688,7 @@ function road_map(item) {
                 end_column = j;
                 continue;}
             i = row;
-            console.log(i,j);
+            //console.log(i,j);
             if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_w'))){
                 end_column = j-1;
                 break;
@@ -740,7 +742,7 @@ function road_map(item) {
                 end_row = i;
                 continue;}
             j = column;
-            console.log(i,j);
+            //console.log(i,j);
             if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_b'))){
                 end_row = i-1;
                 break;
@@ -766,7 +768,7 @@ function road_map(item) {
             }
             start_row = i;
         }
-        console.log(start_row, end_row);
+        //console.log(start_row, end_row);
         for(i = start_row ; i <= end_row ; i++){
             j = column;
             if(cells[i][j].children.length == 0){
@@ -782,7 +784,7 @@ function road_map(item) {
                 end_column = j;
                 continue;}
             i = row;
-            console.log(i,j);
+            //console.log(i,j);
             if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_b'))){
                 end_column = j-1;
                 break;
@@ -920,22 +922,22 @@ function road_map(item) {
 
                 for(i = start_row_down, j = start_column_down ; (i <= end_row_up && j <= end_column_up) ; i++,  j++){
                     if(cells[i][j].children.length == 0){
-                        console.log('khali',i,j);
+                        //console.log('khali',i,j);
                         cells[i][j].append(highlight(item,cells[i][j]));
                     }
                     else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_w'))){
-                        console.log('por',i,j);
+                        //console.log('por',i,j);
                         cells[i][j].append(highlight(item,cells[i][j]));
                     }
                 
             }       
             for(i = start_row_up, j = start_column_up ; (i >= end_row_down && j <= end_column_down) ; i--,  j++){
                 if(cells[i][j].children.length == 0){
-                    console.log('khali',i,j);
+                    //console.log('khali',i,j);
                     cells[i][j].append(highlight(item,cells[i][j]));
                 }
                 else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_w'))){
-                    console.log('por',i,j);
+                    //console.log('por',i,j);
                     cells[i][j].append(highlight(item,cells[i][j]));
                 }
             
@@ -1041,22 +1043,22 @@ function road_map(item) {
     
                     for(i = start_row_down, j = start_column_down ; (i <= end_row_up && j <= end_column_up) ; i++,  j++){
                         if(cells[i][j].children.length == 0){
-                            console.log('khali',i,j);
+                            //console.log('khali',i,j);
                             cells[i][j].append(highlight(item,cells[i][j]));
                         }
                         else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_b'))){
-                            console.log('por',i,j);
+                            //console.log('por',i,j);
                             cells[i][j].append(highlight(item,cells[i][j]));
                         }
                     
                 }       
                 for(i = start_row_up, j = start_column_up ; (i >= end_row_down && j <= end_column_down) ; i--,  j++){
                     if(cells[i][j].children.length == 0){
-                        console.log('khali',i,j);
+                        //console.log('khali',i,j);
                         cells[i][j].append(highlight(item,cells[i][j]));
                     }
                     else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_b'))){
-                        console.log('por',i,j);
+                        //console.log('por',i,j);
                         cells[i][j].append(highlight(item,cells[i][j]));
                     }
                 
@@ -1083,7 +1085,7 @@ function road_map(item) {
                 end_row = i;
                 continue;}
             j = column;
-            console.log(i,j);
+            //console.log(i,j);
             if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_w'))){
                 end_row = i-1;
                 break;
@@ -1112,7 +1114,7 @@ function road_map(item) {
             }
             start_row = i;
         }
-        console.log(start_row, end_row);
+        //console.log(start_row, end_row);
         for(i = start_row ; i <= end_row ; i++){
             j = column;
             if(cells[i][j].children.length == 0){
@@ -1129,7 +1131,7 @@ function road_map(item) {
                 continue;
             }
             i = row;
-            console.log(i,j);
+            //console.log(i,j);
             if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_w'))){
                 end_column = j-1;
                 break;
@@ -1255,22 +1257,22 @@ function road_map(item) {
     
         for(i = start_row_down, j = start_column_down ; (i <= end_row_up && j <= end_column_up) ; i++,  j++){
             if(cells[i][j].children.length == 0){
-                console.log('khali',i,j);
+                //console.log('khali',i,j);
                 cells[i][j].append(highlight(item,cells[i][j]));
             }
             else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_w'))){
-                console.log('por',i,j);
+                //console.log('por',i,j);
                 cells[i][j].append(highlight(item,cells[i][j]));
             }
                     
         }       
         for(i = start_row_up, j = start_column_up ; (i >= end_row_down && j <= end_column_down) ; i--,  j++){
             if(cells[i][j].children.length == 0){
-                console.log('khali',i,j);
+                //console.log('khali',i,j);
                 cells[i][j].append(highlight(item,cells[i][j]));
             }
             else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_w'))){
-                console.log('por',i,j);
+                //console.log('por',i,j);
                 cells[i][j].append(highlight(item,cells[i][j]));
             }
                 
@@ -1297,7 +1299,7 @@ function road_map(item) {
                 end_row = i;
                 continue;}
             j = column;
-            console.log(i,j);
+            //console.log(i,j);
             if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_b'))){
                 end_row = i-1;
                 break;
@@ -1326,7 +1328,7 @@ function road_map(item) {
             }
             start_row = i;
         }
-        console.log(start_row, end_row);
+        //console.log(start_row, end_row);
         for(i = start_row ; i <= end_row ; i++){
             j = column;
             if(cells[i][j].children.length == 0){
@@ -1343,7 +1345,7 @@ function road_map(item) {
                 continue;
             }
             i = row;
-            console.log(i,j);
+            //console.log(i,j);
             if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_b'))){
                 end_column = j-1;
                 break;
@@ -1469,22 +1471,22 @@ function road_map(item) {
     
         for(i = start_row_down, j = start_column_down ; (i <= end_row_up && j <= end_column_up) ; i++,  j++){
             if(cells[i][j].children.length == 0){
-                console.log('khali',i,j);
+                //console.log('khali',i,j);
                 cells[i][j].append(highlight(item,cells[i][j]));
             }
             else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_b'))){
-                console.log('por',i,j);
+                //console.log('por',i,j);
                 cells[i][j].append(highlight(item,cells[i][j]));
             }
                     
         }       
         for(i = start_row_up, j = start_column_up ; (i >= end_row_down && j <= end_column_down) ; i--,  j++){
             if(cells[i][j].children.length == 0){
-                console.log('khali',i,j);
+                //console.log('khali',i,j);
                 cells[i][j].append(highlight(item,cells[i][j]));
             }
             else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_b'))){
-                console.log('por',i,j);
+                //console.log('por',i,j);
                 cells[i][j].append(highlight(item,cells[i][j]));
             }
                 
@@ -1514,7 +1516,7 @@ function highlight(item,target) {
     h.style.left        = '0';
     h.style.zIndex      = '5';
 
-    h.addEventListener(even,(element) => {
+    h.addEventListener('click',(element) => {
         //console.log(target.children.length);
         highlight_remover('#highlight');
         
@@ -1525,7 +1527,7 @@ function highlight(item,target) {
                 txt.textContent     = log_counter + '. ' + target.children[0].id + ' removed';
                 log_counter++;
                 log_txt.append(txt);
-                console.log(target.children[0].id, 'removed');
+                //console.log(target.children[0].id, 'removed');
                 target.removeChild(target.children[0]);  
             }
         }
@@ -1537,7 +1539,7 @@ function highlight(item,target) {
         else{
             move(item,target);
             if(item.id.match('pawn')){
-                console.log(item.getAttribute('data-flag'));
+                //console.log(item.getAttribute('data-flag'));
                 item.setAttribute('data-flag' , 'false');
 
                 if(parseInt(item.parentElement.id[1]) == 8){
@@ -1563,20 +1565,20 @@ arrange();
 
 //the size of the pieces
 const pieces = document.querySelectorAll('I');
-console.log(pieces);
+//console.log(pieces);
 
 pieces.forEach(item => {
-    console.log('he');
+    //console.log('he');
     item.style.fontSize = `${size/16}px`;
     item.style.cursor   = `pointer`;
     item.style.width    = `${size/16}px`;
     item.style.height   = `${size/16}px`;
-    const id = item.id;
+    //const id = item.id;
     item.addEventListener('click', (data) => {
-        log_txt.append(id);
-        if(     (id.match('_w'))&&(white)
-            ||  (id.match('_b'))&&(!white)){
-        log_txt.append(id);
+        //log_txt.append(id);
+        if(     (item.id.match('_w'))&&(white)
+            ||  (item.id.match('_b'))&&(!white)){
+        //log_txt.append(id);
         highlight_remover('#highlight');
         highlight_remover('piece');
         item.style.color = 'yellow';
