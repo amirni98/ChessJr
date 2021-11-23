@@ -1529,11 +1529,11 @@ function highlight(item,target) {
     h.id    = 'highlight'
 
     if(target.children.length == 1){
-        h.style.backgroundColor = '#0054fcba';
+        h.style.backgroundColor = '#ff0000a9';
         //console.log('hey',target.children);
     }
     else{
-        h.style.backgroundColor = '#5700fcba';
+        h.style.backgroundColor = '#7d03cea3';
     }
     h.style.width       = size/8 +'px';
     h.style.height      = size/8 +'px';

@@ -46,7 +46,7 @@ body {
 }
 
 .highlited {
-    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-width: 1.2px;
     -webkit-text-stroke-color: rgb(125, 3, 206);
   }
 
