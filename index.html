@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link id = 'style' rel="stylesheet" href="style.css">
     <title>ChessJr</title>
 </head>
 <body id = 'body'>
-    <a class="board" id='board' >
+    <div class="board" id='board' >
         <table class="table" id="table">
             <tr class="trow" id="r8">
                 <th id="r8_1"></th>
@@ -92,7 +92,10 @@
                 <th id="r1_8"></th>
             </tr>
         </table>
-    </a>
+    </div>
+    <button id="button">
+        UNDO
+    </button>
     <div class="log" id='log'></div>
     <script src="script.js"></script>
 </body>

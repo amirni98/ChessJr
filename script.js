@@ -1,12 +1,23 @@
-const board     = document.getElementById('board');
-const table     = document.getElementById('table');
-const log_txt   = document.getElementById('log');
-let log_counter = 1;
-const OS        = navigator.userAgent;
-const width     = window.innerWidth;
+const board         = document.getElementById('board');
+const table         = document.getElementById('table');
+const style         = document.getElementById('style');
+const button        = document.getElementById('button');
+const log_txt       = document.getElementById('log');
+const ptxt          = document.createElement("P");
+let log_counter     = 0;
+let txt             = [];
+const width         = window.innerWidth;
 let size;
-const colors    = ['white' , 'black'];
-let white       = true;
+const colors        = {
+    pieces  : ['white', 'black'],
+    classic : ['white', 'black']    };
+let white           = true;
+let history_count   = 0;
+let history         = [];
+let history_flag    = [];
+
+
+
 //let even = 'click';
 //log_txt.append(window.innerWidth,'txt');
 
@@ -30,15 +41,18 @@ document.querySelectorAll('th').forEach((item) => {
 });
 */
 
-if(width < 400)
+if(width <= 320)
+    size      = 304;  
+else if(width < 400)
     size      = 312;
 else
     size      = 512;
 
 function styling() {
-    board.style.width =size+'px';
-    board.style.height =size+'px';
-    board.style.backgroundColor = 'orange';
+    board.style.width           =   size+'px';
+    board.style.height          =   size+'px';
+    board.style.backgroundColor =   colors.classic[0];
+    log_txt.style.width         =   size+'px';
 
 }
 
@@ -58,40 +72,40 @@ const pawn_shape    = 'fas fa-chess-pawn'   ;
 const rook_r        = document.createElement('I');
 rook_r.className    = rook_shape;
 rook_r.id           = 'rook_w';
-rook_r.style.color  = colors[0];
+rook_r.style.color  = colors.pieces[0];
 const rook_l        = document.createElement('I');
 rook_l.className    = rook_shape;
 rook_l.id           = 'rook_w';
-rook_l.style.color  = colors[0];
+rook_l.style.color  = colors.pieces[0];
 
 
 const bishop_r          = document.createElement('I');
 bishop_r.className      = bishop_shape;
 bishop_r.id             = 'bishop_w';
-bishop_r.style.color    = colors[0];
+bishop_r.style.color    = colors.pieces[0];
 const bishop_l          = document.createElement('I');
 bishop_l.className      = bishop_shape;
 bishop_l.id             = 'bishop_w';
-bishop_l.style.color    = colors[0];
+bishop_l.style.color    = colors.pieces[0];
 
 const queen         = document.createElement('I');
 queen.className     = queen_shape;
 queen.id            = 'queen_w';
-queen.style.color   = colors[0];
+queen.style.color   = colors.pieces[0];
 
 const king          = document.createElement('I');
 king.className      = king_shape;
 king.id             = 'king_w';
-king.style.color    = colors[0];
+king.style.color    = colors.pieces[0];
 
 const knight_r          = document.createElement('I');
 knight_r.className      = knight_shape;
 knight_r.id             = 'knight_w';
-knight_r.style.color    = colors[0];
+knight_r.style.color    = colors.pieces[0];
 const knight_l          = document.createElement('I');
 knight_l.className      = knight_shape;
 knight_l.id             = 'knight_w';
-knight_l.style.color    = colors[0];
+knight_l.style.color    = colors.pieces[0];
 
 let p;
 let pawn = [];
@@ -99,7 +113,7 @@ for (p = 0 ; p < 8 ; p++){
     pawn[p]                 = document.createElement('I');
     pawn[p].className       = pawn_shape;
     pawn[p].id              = 'pawn_w'
-    pawn[p].style.color     = colors[0];
+    pawn[p].style.color     = colors.pieces[0];
     pawn[p].setAttribute('data-flag' , 'true');
 }
 
@@ -107,47 +121,47 @@ for (p = 0 ; p < 8 ; p++){
 const rook_r_b          = document.createElement('I');
 rook_r_b.className      = rook_shape;
 rook_r_b.id             = 'rook_b';
-rook_r_b.style.color    = colors[1];
+rook_r_b.style.color    = colors.pieces[1];
 const rook_l_b          = document.createElement('I');
 rook_l_b.className      = rook_shape;
 rook_l_b.id             = 'rook_b';
-rook_l_b.style.color    = colors[1];
+rook_l_b.style.color    = colors.pieces[1];
 
 
 const bishop_r_b        = document.createElement('I');
 bishop_r_b.className    = bishop_shape;
 bishop_r_b.id           = 'bishop_b';
-bishop_r_b.style.color  = colors[1];
+bishop_r_b.style.color  = colors.pieces[1];
 const bishop_l_b        = document.createElement('I');
 bishop_l_b.className    = bishop_shape;
 bishop_l_b.id           = 'bishop_b';
-bishop_l_b.style.color  = colors[1];
+bishop_l_b.style.color  = colors.pieces[1];
 
 const queen_b           = document.createElement('I');
 queen_b.className       = queen_shape;
 queen_b.id              = 'queen_b';
-queen_b.style.color     = colors[1];
+queen_b.style.color     = colors.pieces[1];
 
 const king_b        = document.createElement('I');
 king_b.className    = king_shape;
 king_b.id           = 'king_b';
-king_b.style.color  = colors[1];
+king_b.style.color  = colors.pieces[1];
 
 const knight_r_b        = document.createElement('I');
 knight_r_b.className    = knight_shape;
 knight_r_b.id           = 'knight_b';
-knight_r_b.style.color  = colors[1];
+knight_r_b.style.color  = colors.pieces[1];
 const knight_l_b        = document.createElement('I');
 knight_l_b.className    = knight_shape;
 knight_l_b.id           = 'knight_b';
-knight_l_b.style.color  = colors[1];
+knight_l_b.style.color  = colors.pieces[1];
 
 let pawn_b = [];
 for (p = 0 ; p < 8 ; p++){
     pawn_b[p] = document.createElement('I');
     pawn_b[p].className     = pawn_shape;
     pawn_b[p].id            = 'pawn_b'
-    pawn_b[p].style.color   = colors[1];
+    pawn_b[p].style.color   = colors.pieces[1];
     pawn_b[p].setAttribute('data-flag' , 'true');
     
 }
@@ -166,7 +180,7 @@ for (i = 0 ; i < 8 ; i++) {
         cells[i][j].className   = 'cell';
 
         if((i+j)%2 == 0){
-            cells[i][j].style.backgroundColor = 'red';
+            cells[i][j].style.backgroundColor = colors.classic[1];
         }
         cells[i][j].style.position = 'relative';
         //cells[i][j].style.alignItems = 'center';
@@ -208,8 +222,11 @@ function arrange(){
 }
 
 function move(item,target){
+    
+    
     target.append(item);
     white = !(white);
+    //console.log(item,target);
 }
 
 function highlight_remover(id) {
@@ -223,10 +240,20 @@ function highlight_remover(id) {
     else{
         const all_e = document.querySelectorAll('I');
         all_e.forEach(item => {
+            if(item.className.match(' highlited')){
+
+                item.className = item.className.slice(0,(item.className.length-' highlited'.length));
+                if(item.id.match('_w')){
+                    item.className += ' white';
+                }
+                else if(item.id.match('_b')){
+                    item.className += ' black';
+                }
+            }
             if(item.id.match('_b'))
-                item.style.color = colors[1];
+                item.style.color = colors.pieces[1];
             else
-            item.style.color = colors[0];
+            item.style.color = colors.pieces[0];
         });
     }
 
@@ -1523,10 +1550,15 @@ function highlight(item,target) {
         if(target.children.length == 1){
             
             if(!target.children[0].id.match('king')){
-                const txt           = document.createElement("P");
-                txt.textContent     = log_counter + '. ' + target.children[0].id + ' removed';
+                history[history_count] =  [target.children[0],target.children[0].parentElement,target.children[0].getAttribute('data-flag'),target.children[0].id,target.children[0].className];
+                history_flag[history_count] = true;
+                history_count++;
+
+                
+                txt[log_counter] = ' ('+(log_counter+1) + '. ' + target.children[0].id + ' removed)';
                 log_counter++;
-                log_txt.append(txt);
+                ptxt.textContent = txt;
+                
                 //console.log(target.children[0].id, 'removed');
                 target.removeChild(target.children[0]);  
             }
@@ -1537,10 +1569,14 @@ function highlight(item,target) {
             move(item,target);
         }
         else{
+            history[history_count] =  [item,item.parentElement,item.getAttribute('data-flag'),item.id,item.className];
+            history_flag[history_count] = false;
+            history_count++;
             move(item,target);
             if(item.id.match('pawn')){
                 //console.log(item.getAttribute('data-flag'));
                 item.setAttribute('data-flag' , 'false');
+                //history[history_count-2][3] = item.id;
 
                 if(parseInt(item.parentElement.id[1]) == 8){
                     item.className = queen_shape;
@@ -1560,6 +1596,33 @@ function highlight(item,target) {
     return h;   
 }
 
+function undo(){
+    if(!(history_count>0))
+        return;
+    
+    highlight_remover('#highlight');
+    highlight_remover();
+    move(history[history_count-1][0],history[history_count-1][1]);
+    history[history_count-1][0].setAttribute('data-flag',history[history_count-1][2]);
+    history[history_count-1][0].id = history[history_count-1][3];
+    history[history_count-1][0].className = history[history_count-1][4];
+    history_count--;
+    if(history_flag[history_count-1]){
+        move(history[history_count-1][0],history[history_count-1][1]);
+        history[history_count-1][0].setAttribute('data-flag',history[history_count-1][2]);
+        history[history_count-1][0].id = history[history_count-1][3];
+        history[history_count-1][0].className = history[history_count-1][4];
+        history_count--;
+        white = !white;
+        txt.pop();
+        ptxt.textContent = txt;
+        log_counter--;
+    }
+    
+    
+}
+button.addEventListener('click',  undo)
+
 styling();
 arrange();
 
@@ -1567,12 +1630,22 @@ arrange();
 const pieces = document.querySelectorAll('I');
 //console.log(pieces);
 
+log_txt.append(ptxt);
+
 pieces.forEach(item => {
     //console.log('he');
     item.style.fontSize = `${size/16}px`;
     item.style.cursor   = `pointer`;
     item.style.width    = `${size/16}px`;
     item.style.height   = `${size/16}px`;
+    
+    if(item.id.match('_w')){
+        item.className += ' white';
+    }
+    else if(item.id.match('_b')){
+        item.className += ' black';
+    }
+    //console.log(item.style);
     //const id = item.id;
     item.addEventListener('click', (data) => {
         //log_txt.append(id);
@@ -1581,7 +1654,12 @@ pieces.forEach(item => {
         //log_txt.append(id);
         highlight_remover('#highlight');
         highlight_remover('piece');
-        item.style.color = 'yellow';
+        if(     (item.className.match(' black'))    ||  (item.className.match(' white'))){
+
+            item.className = item.className.slice(0,(item.className.length-' white'.length));
+            item.className += ' highlited';
+        }
+        
         road_map(item);
         //move(item,cells[2][3])
         //console.log(data,data.path[0],cells[3][3]);
