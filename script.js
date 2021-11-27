@@ -279,26 +279,7 @@ function check(){
             start_row = i;
         }
         //console.log(start_row, end_row);
-        j = column;
-        //console.log(end_row,cells[end_row][j].children[0].id.match('_w'));
         
-        //console.log(cells[end_row][j].children[0].id);
-        if(cells[start_row][j].children.length == 1)
-        if(cells[start_row][j].children[0].id.match('queen_b') ||
-            cells[start_row][j].children[0].id.match('rook_b')){
-                undo();
-                king.style.color = 'red';
-                check_flag = true;
-                console.log('check');
-            }
-        if(cells[end_row][j].children.length == 1)
-        if(cells[end_row][j].children[0].id.match('queen_b') ||
-            cells[end_row][j].children[0].id.match('rook_b')){
-                undo();
-                king.style.color = 'red';
-                check_flag = true;
-                console.log('check');
-            }
         
         
         
@@ -335,24 +316,8 @@ function check(){
             }
             start_column = j;
         }
-
-        i = row;
-        if(cells[i][start_column].children.length == 1)
-            if(cells[i][start_column].children[0].id.match('queen_b') ||
-                cells[i][start_column].children[0].id.match('rook_b')){
-                    undo();
-                    king.style.color = 'red';
-                    check_flag = true;
-                    console.log('check');
-                }
-        if(cells[i][end_column].children.length == 1)
-            if(cells[i][end_column].children[0].id.match('queen_b') ||
-                cells[i][end_column].children[0].id.match('rook_b')){
-                    undo();
-                    king.style.color = 'red';
-                    check_flag = true;
-                    console.log('check');
-                }
+        
+        
         
 
 
@@ -441,61 +406,854 @@ function check(){
                 
         } 
 
-        if(cells[start_row_up][start_column_up].children.length == 1)
+
+
+        i = row;
+        j = column;
+        //console.log(end_row,cells[end_row][j].children[0].id.match('_w'));
+        
+        //console.log(cells[end_row][j].children[0].id);
+        if(cells[start_row][j].children.length == 1 && !check_flag){
+            if(cells[start_row][j].children[0].id.match('queen_b') ||
+                cells[start_row][j].children[0].id.match('rook_b')){
+                    undo();
+                    white = true;
+                    king.style.color = 'red';
+                    check_flag = true;
+                    console.log('check');
+            }
+        }
+        if(cells[end_row][j].children.length == 1 && !check_flag){
+        if(cells[end_row][j].children[0].id.match('queen_b') ||
+            cells[end_row][j].children[0].id.match('rook_b')){
+                undo();
+                white = true;
+                king.style.color = 'red';
+                check_flag = true;
+                console.log('check');
+            }
+        }
+
+        
+        if(cells[i][start_column].children.length == 1 && !check_flag){
+            if(cells[i][start_column].children[0].id.match('queen_b') ||
+                cells[i][start_column].children[0].id.match('rook_b')){
+                    undo();
+                    white = true;
+                    king.style.color = 'red';
+                    check_flag = true;
+                    console.log('check');
+                }
+            }
+        if(cells[i][end_column].children.length == 1 && !check_flag){
+            if(cells[i][end_column].children[0].id.match('queen_b') ||
+                cells[i][end_column].children[0].id.match('rook_b')){
+                    undo();
+                    white = true;
+                    king.style.color = 'red';
+                    check_flag = true;
+                    console.log('check');
+                }
+            }
+
+
+
+
+        if(cells[start_row_up][start_column_up].children.length == 1 && !check_flag){
             if(cells[start_row_up][start_column_up].children[0].id.match('queen_b') ||
                 cells[start_row_up][start_column_up].children[0].id.match('bishop_b')){
                     undo();
+                    white = true;
                     king.style.color = 'red';
                     check_flag = true;
                     console.log('check');
                 }
-        if(cells[start_row_down][start_column_down].children.length == 1)
+            }
+        if(cells[start_row_down][start_column_down].children.length == 1 && !check_flag){
             if(cells[start_row_down][start_column_down].children[0].id.match('queen_b') ||
                 cells[start_row_down][start_column_down].children[0].id.match('bishop_b')){
                     undo();
+                    white = true;
                     king.style.color = 'red';
                     check_flag = true;
                     console.log('check');
                 }
-        if(cells[end_row_up][end_column_up].children.length == 1)
+            }
+        if(cells[end_row_up][end_column_up].children.length == 1 && !check_flag){
             if(cells[end_row_up][end_column_up].children[0].id.match('queen_b') ||
                 cells[end_row_up][end_column_up].children[0].id.match('bishop_b')){
                     undo();
+                    white = true;
                     king.style.color = 'red';
                     check_flag = true;
                     console.log('check');
                 }
-        if(cells[end_row_down][end_column_down].children.length == 1)
+            }
+        if(cells[end_row_down][end_column_down].children.length == 1 && !check_flag){
             if(cells[end_row_down][end_column_down].children[0].id.match('queen_b') ||
                 cells[end_row_down][end_column_down].children[0].id.match('bishop_b')){
                     undo();
+                    white = true;
                     king.style.color = 'red';
                     check_flag = true;
                     console.log('check');
                 }
-        /*
-        for(i = start_row_down, j = start_column_down ; (i <= end_row_up && j <= end_column_up) ; i++,  j++){
-            if(cells[i][j].children.length == 0){
-                //console.log('khali',i,j);
-                cells[i][j].append(highlight(item,cells[i][j]));
             }
-            else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_w'))){
-                //console.log('por',i,j);
-                cells[i][j].append(highlight(item,cells[i][j]));
+        if(i<7){
+            if(j<7){
+            if(cells[i+1][j+1].children.length == 1 && !check_flag){
+                if( cells[i+1][j+1].children[0].id.match('pawn_b') ||
+                    cells[i+1][j+1].children[0].id.match('king_b')){
+                        undo();
+                        white = true;
+                        king.style.color = 'red';
+                        check_flag = true;
+                        console.log('check');
+                    }
+                }
+                if(cells[i+1][j].children.length == 1 && !check_flag){
+                    if(cells[i+1][j].children[0].id.match('king_b')){
+                            undo();
+                            white = true;
+                            king.style.color = 'red';
+                            check_flag = true;
+                            console.log('check');
+                        }
+                    }
+                    if(cells[i][j+1].children.length == 1 && !check_flag){
+                        if(cells[i][j+1].children[0].id.match('king_b')){
+                                undo();
+                                white = true;
+                                king.style.color = 'red';
+                                check_flag = true;
+                                console.log('check');
+                            }
+                        }
             }
-                    
-        }       
-        for(i = start_row_up, j = start_column_up ; (i >= end_row_down && j <= end_column_down) ; i--,  j++){
-            if(cells[i][j].children.length == 0){
-                //console.log('khali',i,j);
-                cells[i][j].append(highlight(item,cells[i][j]));
+            if(j>0){
+            if(cells[i+1][j-1].children.length == 1 && !check_flag){
+                if( cells[i+1][j-1].children[0].id.match('pawn_b') ||
+                    cells[i+1][j-1].children[0].id.match('king_b')){
+                        undo();
+                        white = true;
+                        king.style.color = 'red';
+                        check_flag = true;
+                        console.log('check');
+                    }
+                }
+                if(cells[i][j-1].children.length == 1 && !check_flag){
+                    if(cells[i][j-1].children[0].id.match('king_b')){
+                            undo();
+                            white = true;
+                            king.style.color = 'red';
+                            check_flag = true;
+                            console.log('check');
+                        }
+                    }
+                }
             }
-            else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_w'))){
-                //console.log('por',i,j);
-                cells[i][j].append(highlight(item,cells[i][j]));
+        if(i>0){
+            if(j<7){
+            if(cells[i-1][j+1].children.length == 1 && !check_flag){
+                if( cells[i-1][j+1].children[0].id.match('pawn_b') ||
+                    cells[i-1][j+1].children[0].id.match('king_b')){
+                        undo();
+                        white = true;
+                        king.style.color = 'red';
+                        check_flag = true;
+                        console.log('check');
+                    }
+                }
             }
+            if(j>0){
+            if(cells[i-1][j-1].children.length == 1 && !check_flag){
+                if( cells[i-1][j-1].children[0].id.match('pawn_b') ||
+                    cells[i-1][j-1].children[0].id.match('king_b')){
+                        undo();
+                        white = true;
+                        king.style.color = 'red';
+                        check_flag = true;
+                        console.log('check');
+                    }
+                }
+                if(cells[i-1][j-1].children.length == 1 && !check_flag){
+                    if(cells[i-1][j-1].children[0].id.match('king_b')){
+                            undo();
+                            white = true;
+                            king.style.color = 'red';
+                            check_flag = true;
+                            console.log('check');
+                        }
+                    }
+                }
+            
+        } 
+
+        if(!check_flag){
+            let rkl = 99;
+            let ckl = 99;
+
+            if(knight_l_b.parentElement != null){
+                rkl = knight_l_b.parentElement.id[1]-1;
+                ckl = knight_l_b.parentElement.id[3]-1;
+            }
+            if(((row == (rkl-2))&&(column == (ckl+1)))&&(!check_flag)){
+                    undo();
+                    white = true;
+                    king.style.color = 'red';
+                    check_flag = true;
+                    console.log('check');
+            }
+            
+            if(((row == (rkl-2))&&(column == (ckl-1)))&&(!check_flag)){
+                undo();
+                white = true;
+                king.style.color = 'red';
+                check_flag = true;
+                console.log('check');
+        }
+        if(((row == (rkl-1))&&(column == (ckl+2)))&&(!check_flag)){
+                undo();
+                white = true;
+                king.style.color = 'red';
+                check_flag = true;
+                console.log('check');
+        }
+        if(((row == (rkl-1))&&(column == (ckl-2)))&&(!check_flag)){
+                undo();
+                white = true;
+                king.style.color = 'red';
+                check_flag = true;
+                console.log('check');
+        }
+        if(((row == (rkl+2))&&(column == (ckl+1)))&&(!check_flag)){
+            undo();
+            white = true;
+            king.style.color = 'red';
+            check_flag = true;
+            console.log('check');
+        }
+    
+        if(((row == (rkl+2))&&(column == (ckl-1)))&&(!check_flag)){
+            undo();
+            white = true;
+            king.style.color = 'red';
+            check_flag = true;
+            console.log('check');
+        }
+        if(((row == (rkl+1))&&(column == (ckl+2)))&&(!check_flag)){
+                undo();
+                white = true;
+                king.style.color = 'red';
+                check_flag = true;
+                console.log('check');
+        }
+        if(((row == (rkl+1))&&(column == (ckl-2)))&&(!check_flag)){
+                undo();
+                white = true;
+                king.style.color = 'red';
+                check_flag = true;
+                console.log('check');
+        }
+            let rkr = 99;
+            let ckr = 99;
+
+            if(knight_r_b.parentElement != null){
+                rkr = knight_r_b.parentElement.id[1]-1;
+                ckr = knight_r_b.parentElement.id[3]-1;
+            }
+        if(((row == (rkr-2))&&(column == (ckr+1)))&&(!check_flag)){
+                undo();
+                white = true;
+                king.style.color = 'red';
+                check_flag = true;
+                console.log('check');
+        }
+        
+        if(((row == (rkr-2))&&(column == (ckr-1)))&&(!check_flag)){
+            undo();
+            white = true;
+            king.style.color = 'red';
+            check_flag = true;
+            console.log('check');
+        }
+        if(((row == (rkr-1))&&(column == (ckr+2)))&&(!check_flag)){
+                undo();
+                white = true;
+                king.style.color = 'red';
+                check_flag = true;
+                console.log('check');
+        }
+        if(((row == (rkr-1))&&(column == (ckr-2)))&&(!check_flag)){
+                undo();
+                white = true;
+                king.style.color = 'red';
+                check_flag = true;
+                console.log('check');
+        }
+        if(((row == (rkr+2))&&(column == (ckr+1)))&&(!check_flag)){
+            undo();
+            white = true;
+            king.style.color = 'red';
+            check_flag = true;
+            console.log('check');
+        }
+
+        if(((row == (rkr+2))&&(column == (ckr-1)))&&(!check_flag)){
+            undo();
+            white = true;
+            king.style.color = 'red';
+            check_flag = true;
+            console.log('check');
+        }
+        if(((row == (rkr+1))&&(column == (ckr+2)))&&(!check_flag)){
+                undo();
+                white = true;
+                king.style.color = 'red';
+                check_flag = true;
+                console.log('check');
+        }
+        if(((row == (rkr+1))&&(column == (ckr-2)))&&(!check_flag)){
+                undo();
+                white = true;
+                king.style.color = 'red';
+                check_flag = true;
+                console.log('check');
+        }
+    }           
+        
+      
+    }
+
+    else if(white){
+        //console.log(king.parentElement);
+        const row       = king_b.parentElement.id[1]-1;
+        const column    = king_b.parentElement.id[3]-1;
+        let i;
+        let j;
+        let start_row;
+        let end_row;
+        let start_column;
+        let end_column;
+        let start_row_up;
+        let start_row_down;
+        let end_row_up;
+        let end_row_down;
+        let start_column_up;
+        let start_column_down;
+        let end_column_up;
+        let end_column_down;
+        
+        for(i = row ; i <= 7 ; i++){
+            if(i == row){
+                end_row = i;
+                continue;}
+            j = column;
+            //console.log(i,j);
+            if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_b'))){
+                end_row = i-1;
+                break;
+            }
+            else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_b'))){
+                end_row = i;
+                break;
+            }
+
+            end_row = i;
+        }
+        
+        for(i = row ; i >= 0 ; i--){
+            if(i == row){
+                start_row = i;
+                continue;
+            }
+            j = column;
+            if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_b'))){
+                start_row = i+1;
+                break;
+            }
+            else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_b'))){
+                start_row = i;
+                break;
+            }
+            start_row = i;
+        }
+        //console.log(start_row, end_row);
+        
+        
+        
+        
+        for(j = column ; j <= 7 ; j++){
+            if(j == column){
+                end_column = j;
+                continue;
+            }
+            i = row;
+            //console.log(i,j);
+            if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_b'))){
+                end_column = j-1;
+                break;
+            }
+            else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_b'))){
+                end_column = j;
+                break;
+            }
+            end_column = j;
+        }
+        for(j = column ; j >= 0 ; j--){
+            if(j == column){
+                start_column = j;
+                continue;
+            }
+            i = row;
+            if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_b'))){
+                start_column = j+1;
+                break;
+            }
+            else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_b'))){
+                start_column = j;
+                break;
+            }
+            start_column = j;
+        }
+        
+        
+        
+
+
+
+            
+    
+    
+    
+        for(i = row ,j = column; (i <= 7 && j <= 7) ; i++,j++){
+            if((i == row) || (j == column)){
+                end_row_up = i;
+                end_column_up = j;
+                continue;
+            }
+            if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_b'))){
+                end_row_up = i-1;
+                end_column_up = j-1;
+                break;
+            }
+            else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_b'))){
+                end_row_up = i;
+                end_column_up = j;
+                break;
+            }
+            end_row_up = i;
+            end_column_up = j;
                 
-        }*/  
+        }
+        for(i = row ,j = column; (i >= 0 && j <= 7) ; i--,j++){
+            if((i == row) || (j == column)){
+                end_row_down = i;
+                end_column_down = j;
+                continue;
+            }
+            if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_b'))){
+                end_row_down = i+1;
+                end_column_down = j-1;
+                break;
+            }
+            else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_b'))){
+                end_row_down = i;
+                end_column_down = j;
+                break;
+            }
+            end_row_down = i;
+            end_column_down = j;
+            
+        }
+        for(i = row ,j = column; (i >= 0 && j >= 0) ; i--,j--){
+            if((i == row) || (j == column)){
+                start_row_down = i;
+                start_column_down = j;
+                continue;
+            }
+            if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_b'))){
+                start_row_down = i+1;
+                start_column_down = j+1;
+                break;
+            }
+            else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_b'))){
+                start_row_down = i;
+                start_column_down = j;
+                break;
+            }
+            start_row_down = i;
+            start_column_down = j;         
+        } 
+        for(i = row ,j = column; (i <= 7 && j >= 0) ; i++,j--){
+            if((i == row) || (j == column)){
+                start_row_up = i;
+                start_column_up = j;
+                continue;
+            }
+            if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_b'))){
+                start_row_up = i-1;
+                start_column_up = j+1;
+                break;
+            }
+            else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_b'))){
+                start_row_up = i;
+                start_column_up = j;
+                break;
+            }
+            start_row_up = i;
+            start_column_up = j;
+                
+        } 
+
+
+
+        i = row;
+        j = column;
+        //console.log(end_row,cells[end_row][j].children[0].id.match('_w'));
+        
+        //console.log(cells[end_row][j].children[0].id);
+        if(cells[start_row][j].children.length == 1 && !check_flag){
+            if(cells[start_row][j].children[0].id.match('queen_w') ||
+                cells[start_row][j].children[0].id.match('rook_w')){
+                    undo();
+                    white = false;
+                    king_b.style.color = 'blue';
+                    check_flag = true;
+                    console.log('check');
+            }
+        }
+        if(cells[end_row][j].children.length == 1 && !check_flag){
+        if(cells[end_row][j].children[0].id.match('queen_w') ||
+            cells[end_row][j].children[0].id.match('rook_w')){
+                
+                undo();
+                white = false;
+                king_b.style.color = 'blue';
+                check_flag = true;
+                console.log('check');
+            }
+        }
+
+        
+        if(cells[i][start_column].children.length == 1 && !check_flag){
+            if(cells[i][start_column].children[0].id.match('queen_w') ||
+                cells[i][start_column].children[0].id.match('rook_w')){
+                    
+                    undo();
+                    white = false;
+                    king_b.style.color = 'blue';
+                    check_flag = true;
+                    console.log('check');
+                }
+            }
+        if(cells[i][end_column].children.length == 1 && !check_flag){
+            if(cells[i][end_column].children[0].id.match('queen_w') ||
+                cells[i][end_column].children[0].id.match('rook_w')){
+                    
+                    undo();
+                    white = false;
+                    king_b.style.color = 'blue';
+                    check_flag = true;
+                    console.log('check');
+                }
+            }
+
+
+
+
+        if(cells[start_row_up][start_column_up].children.length == 1 && !check_flag){
+            if(cells[start_row_up][start_column_up].children[0].id.match('queen_w') ||
+                cells[start_row_up][start_column_up].children[0].id.match('bishop_w')){
+                    
+                    undo();
+                    white = false;
+                    king_b.style.color = 'blue';
+                    check_flag = true;
+                    console.log('check');
+                }
+            }
+        if(cells[start_row_down][start_column_down].children.length == 1 && !check_flag){
+            if(cells[start_row_down][start_column_down].children[0].id.match('queen_w') ||
+                cells[start_row_down][start_column_down].children[0].id.match('bishop_w')){
+                    
+                    undo();
+                    white = false;
+                    king_b.style.color = 'blue';
+                    check_flag = true;
+                    console.log('check');
+                }
+            }
+        if(cells[end_row_up][end_column_up].children.length == 1 && !check_flag){
+            if(cells[end_row_up][end_column_up].children[0].id.match('queen_w') ||
+                cells[end_row_up][end_column_up].children[0].id.match('bishop_w')){
+                    
+                    undo();
+                    white = false;
+                    king_b.style.color = 'blue';
+                    check_flag = true;
+                    console.log('check');
+                }
+            }
+        if(cells[end_row_down][end_column_down].children.length == 1 && !check_flag){
+            if(cells[end_row_down][end_column_down].children[0].id.match('queen_w') ||
+                cells[end_row_down][end_column_down].children[0].id.match('bishop_w')){
+                    
+                    undo();
+                    white = false;
+                    king_b.style.color = 'blue';
+                    check_flag = true;
+                    console.log('check');
+                }
+            }
+        if(i<7){
+            if(j<7){
+            if(cells[i+1][j+1].children.length == 1 && !check_flag){
+                if( cells[i+1][j+1].children[0].id.match('pawn_w') ||
+                    cells[i+1][j+1].children[0].id.match('king_w')){
+                        
+                    undo();
+                    white = false;
+                    king_b.style.color = 'blue';
+                    check_flag = true;
+                    console.log('check');
+                    }
+                }
+                if(cells[i+1][j].children.length == 1 && !check_flag){
+                    if(cells[i+1][j].children[0].id.match('king_w')){
+                            
+                    undo();
+                    white = false;
+                    king_b.style.color = 'blue';
+                    check_flag = true;
+                    console.log('check');
+                        }
+                    }
+                    if(cells[i][j+1].children.length == 1 && !check_flag){
+                        if(cells[i][j+1].children[0].id.match('king_w')){
+                                
+                    undo();
+                    white = false;
+                    king_b.style.color = 'blue';
+                    check_flag = true;
+                    console.log('check');
+                            }
+                        }
+            }
+            if(j>0){
+            if(cells[i+1][j-1].children.length == 1 && !check_flag){
+                if( cells[i+1][j-1].children[0].id.match('pawn_w') ||
+                    cells[i+1][j-1].children[0].id.match('king_w')){
+                        
+                    undo();
+                    white = false;
+                    king_b.style.color = 'blue';
+                    check_flag = true;
+                    console.log('check');
+                    }
+                }
+                if(cells[i][j-1].children.length == 1 && !check_flag){
+                    if(cells[i][j-1].children[0].id.match('king_w')){
+                            
+                    undo();
+                    white = false;
+                    king_b.style.color = 'blue';
+                    check_flag = true;
+                    console.log('check');
+                        }
+                    }
+                }
+            }
+        if(i>0){
+            if(j<7){
+            if(cells[i-1][j+1].children.length == 1 && !check_flag){
+                if( cells[i-1][j+1].children[0].id.match('pawn_w') ||
+                    cells[i-1][j+1].children[0].id.match('king_w')){
+                        
+                    undo();
+                    white = false;
+                    king_b.style.color = 'blue';
+                    check_flag = true;
+                    console.log('check');
+                    }
+                }
+            }
+            if(j>0){
+            if(cells[i-1][j-1].children.length == 1 && !check_flag){
+                if( cells[i-1][j-1].children[0].id.match('pawn_w') ||
+                    cells[i-1][j-1].children[0].id.match('king_w')){
+                        
+                    undo();
+                    white = false;
+                    king_b.style.color = 'blue';
+                    check_flag = true;
+                    console.log('check');
+                    }
+                }
+                if(cells[i-1][j-1].children.length == 1 && !check_flag){
+                    if(cells[i-1][j-1].children[0].id.match('king_w')){
+                            
+                    undo();
+                    white = false;
+                    king_b.style.color = 'blue';
+                    check_flag = true;
+                    console.log('check');
+                        }
+                    }
+                }
+            
+        } 
+
+        if(!check_flag){
+            let rkl = 99;
+            let ckl = 99;
+
+            if(knight_l.parentElement != null){
+                rkl = knight_l.parentElement.id[1]-1;
+                ckl = knight_l.parentElement.id[3]-1;
+            }
+            if(((row == (rkl-2))&&(column == (ckl+1)))&&(!check_flag)){
+                    
+                undo();
+                white = false;
+                king_b.style.color = 'blue';
+                check_flag = true;
+                console.log('check');
+            }
+            
+            if(((row == (rkl-2))&&(column == (ckl-1)))&&(!check_flag)){
+                
+                undo();
+                white = false;
+                king_b.style.color = 'blue';
+                check_flag = true;
+                console.log('check');
+        }
+        if(((row == (rkl-1))&&(column == (ckl+2)))&&(!check_flag)){
+                
+            undo();
+            white = false;
+            king_b.style.color = 'blue';
+            check_flag = true;
+            console.log('check');
+        }
+        if(((row == (rkl-1))&&(column == (ckl-2)))&&(!check_flag)){
+                
+            undo();
+            white = false;
+            king_b.style.color = 'blue';
+            check_flag = true;
+            console.log('check');
+        }
+        if(((row == (rkl+2))&&(column == (ckl+1)))&&(!check_flag)){
+            
+            undo();
+            white = false;
+            king_b.style.color = 'blue';
+            check_flag = true;
+            console.log('check');
+        }
+    
+        if(((row == (rkl+2))&&(column == (ckl-1)))&&(!check_flag)){
+            
+            undo();
+            white = false;
+            king_b.style.color = 'blue';
+            check_flag = true;
+            console.log('check');
+        }
+        if(((row == (rkl+1))&&(column == (ckl+2)))&&(!check_flag)){
+                
+            undo();
+            white = false;
+            king_b.style.color = 'blue';
+            check_flag = true;
+            console.log('check');
+        }
+        if(((row == (rkl+1))&&(column == (ckl-2)))&&(!check_flag)){
+                
+            undo();
+            white = false;
+            king_b.style.color = 'blue';
+            check_flag = true;
+            console.log('check');
+        }
+            let rkr = 99;
+            let ckr = 99;
+
+            if(knight_r.parentElement != null){
+                rkr = knight_r.parentElement.id[1]-1;
+                ckr = knight_r.parentElement.id[3]-1;
+            }
+        if(((row == (rkr-2))&&(column == (ckr+1)))&&(!check_flag)){
+                
+            undo();
+            white = false;
+            king_b.style.color = 'blue';
+            check_flag = true;
+            console.log('check');
+        }
+        
+        if(((row == (rkr-2))&&(column == (ckr-1)))&&(!check_flag)){
+            
+            undo();
+            white = false;
+            king_b.style.color = 'blue';
+            check_flag = true;
+            console.log('check');
+        }
+        if(((row == (rkr-1))&&(column == (ckr+2)))&&(!check_flag)){
+                
+            undo();
+            white = false;
+            king_b.style.color = 'blue';
+            check_flag = true;
+            console.log('check');
+        }
+        if(((row == (rkr-1))&&(column == (ckr-2)))&&(!check_flag)){
+                
+            undo();
+            white = false;
+            king_b.style.color = 'blue';
+            check_flag = true;
+            console.log('check');
+        }
+        if(((row == (rkr+2))&&(column == (ckr+1)))&&(!check_flag)){
+            
+            undo();
+            white = false;
+            king_b.style.color = 'blue';
+            check_flag = true;
+            console.log('check');
+        }
+
+        if(((row == (rkr+2))&&(column == (ckr-1)))&&(!check_flag)){
+            
+            undo();
+            white = false;
+            king_b.style.color = 'blue';
+            check_flag = true;
+            console.log('check');
+        }
+        if(((row == (rkr+1))&&(column == (ckr+2)))&&(!check_flag)){
+                
+            undo();
+            white = false;
+            king_b.style.color = 'blue';
+            check_flag = true;
+            console.log('check');
+        }
+        if(((row == (rkr+1))&&(column == (ckr-2)))&&(!check_flag)){
+                
+            undo();
+            white = false;
+            king_b.style.color = 'blue';
+            check_flag = true;
+            console.log('check');
+        }
+    }           
+        
+      
     }
 
     
@@ -504,7 +1262,7 @@ function check(){
 
 function move(item,target){
     
-
+    check_flag = false;
     target.append(item);
     white = !(white);
     king.style.color = 'white';
@@ -1849,7 +2607,9 @@ function highlight(item,target) {
                 ptxt.textContent = txt;
                 
                 //console.log(target.children[0].id, 'removed');
+                //const a = target.children[0];
                 target.removeChild(target.children[0]);  
+                //console.log(a, (a.parentElement == null));
             }
         }
         if(target.children.length != 0){
