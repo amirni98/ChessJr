@@ -15,6 +15,7 @@ let white           = true;
 let history_count   = 0;
 let history         = [];
 let history_flag    = [];
+let check_flag      = false;
 
 
 
@@ -41,18 +42,19 @@ document.querySelectorAll('th').forEach((item) => {
 });
 */
 
-if(width <= 320)
-    size      = 304;  
-else if(width < 400)
-    size      = 312;
+if(width < 527)
+    size      = (window.innerWidth-15)-((window.innerWidth-15)%8); 
 else
     size      = 512;
+
+//log_txt.append(size,'txt');
 
 function styling() {
     board.style.width           =   size+'px';
     board.style.height          =   size+'px';
     board.style.backgroundColor =   colors.classic[0];
     log_txt.style.width         =   size+'px';
+    button.style.fontSize       =   size/16+'px';
 
 }
 
@@ -221,11 +223,294 @@ function arrange(){
     }
 }
 
+function check(){
+    check_flag = false;
+    if(!white){
+        //console.log(king.parentElement);
+        const row       = king.parentElement.id[1]-1;
+        const column    = king.parentElement.id[3]-1;
+        let i;
+        let j;
+        let start_row;
+        let end_row;
+        let start_column;
+        let end_column;
+        let start_row_up;
+        let start_row_down;
+        let end_row_up;
+        let end_row_down;
+        let start_column_up;
+        let start_column_down;
+        let end_column_up;
+        let end_column_down;
+        
+        for(i = row ; i <= 7 ; i++){
+            if(i == row){
+                end_row = i;
+                continue;}
+            j = column;
+            //console.log(i,j);
+            if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_w'))){
+                end_row = i-1;
+                break;
+            }
+            else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_w'))){
+                end_row = i;
+                break;
+            }
+
+            end_row = i;
+        }
+        
+        for(i = row ; i >= 0 ; i--){
+            if(i == row){
+                start_row = i;
+                continue;
+            }
+            j = column;
+            if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_w'))){
+                start_row = i+1;
+                break;
+            }
+            else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_w'))){
+                start_row = i;
+                break;
+            }
+            start_row = i;
+        }
+        //console.log(start_row, end_row);
+        j = column;
+        //console.log(end_row,cells[end_row][j].children[0].id.match('_w'));
+        
+        //console.log(cells[end_row][j].children[0].id);
+        if(cells[start_row][j].children.length == 1)
+        if(cells[start_row][j].children[0].id.match('queen_b') ||
+            cells[start_row][j].children[0].id.match('rook_b')){
+                undo();
+                king.style.color = 'red';
+                check_flag = true;
+                console.log('check');
+            }
+        if(cells[end_row][j].children.length == 1)
+        if(cells[end_row][j].children[0].id.match('queen_b') ||
+            cells[end_row][j].children[0].id.match('rook_b')){
+                undo();
+                king.style.color = 'red';
+                check_flag = true;
+                console.log('check');
+            }
+        
+        
+        
+        for(j = column ; j <= 7 ; j++){
+            if(j == column){
+                end_column = j;
+                continue;
+            }
+            i = row;
+            //console.log(i,j);
+            if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_w'))){
+                end_column = j-1;
+                break;
+            }
+            else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_w'))){
+                end_column = j;
+                break;
+            }
+            end_column = j;
+        }
+        for(j = column ; j >= 0 ; j--){
+            if(j == column){
+                start_column = j;
+                continue;
+            }
+            i = row;
+            if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_w'))){
+                start_column = j+1;
+                break;
+            }
+            else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_w'))){
+                start_column = j;
+                break;
+            }
+            start_column = j;
+        }
+
+        i = row;
+        if(cells[i][start_column].children.length == 1)
+            if(cells[i][start_column].children[0].id.match('queen_b') ||
+                cells[i][start_column].children[0].id.match('rook_b')){
+                    undo();
+                    king.style.color = 'red';
+                    check_flag = true;
+                    console.log('check');
+                }
+        if(cells[i][end_column].children.length == 1)
+            if(cells[i][end_column].children[0].id.match('queen_b') ||
+                cells[i][end_column].children[0].id.match('rook_b')){
+                    undo();
+                    king.style.color = 'red';
+                    check_flag = true;
+                    console.log('check');
+                }
+        
+
+
+
+            
+    
+    
+    
+        for(i = row ,j = column; (i <= 7 && j <= 7) ; i++,j++){
+            if((i == row) || (j == column)){
+                end_row_up = i;
+                end_column_up = j;
+                continue;
+            }
+            if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_w'))){
+                end_row_up = i-1;
+                end_column_up = j-1;
+                break;
+            }
+            else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_w'))){
+                end_row_up = i;
+                end_column_up = j;
+                break;
+            }
+            end_row_up = i;
+            end_column_up = j;
+                
+        }
+        for(i = row ,j = column; (i >= 0 && j <= 7) ; i--,j++){
+            if((i == row) || (j == column)){
+                end_row_down = i;
+                end_column_down = j;
+                continue;
+            }
+            if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_w'))){
+                end_row_down = i+1;
+                end_column_down = j-1;
+                break;
+            }
+            else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_w'))){
+                end_row_down = i;
+                end_column_down = j;
+                break;
+            }
+            end_row_down = i;
+            end_column_down = j;
+            
+        }
+        for(i = row ,j = column; (i >= 0 && j >= 0) ; i--,j--){
+            if((i == row) || (j == column)){
+                start_row_down = i;
+                start_column_down = j;
+                continue;
+            }
+            if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_w'))){
+                start_row_down = i+1;
+                start_column_down = j+1;
+                break;
+            }
+            else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_w'))){
+                start_row_down = i;
+                start_column_down = j;
+                break;
+            }
+            start_row_down = i;
+            start_column_down = j;         
+        } 
+        for(i = row ,j = column; (i <= 7 && j >= 0) ; i++,j--){
+            if((i == row) || (j == column)){
+                start_row_up = i;
+                start_column_up = j;
+                continue;
+            }
+            if((cells[i][j].children.length == 1)&&(cells[i][j].children[0].id.match('_w'))){
+                start_row_up = i-1;
+                start_column_up = j+1;
+                break;
+            }
+            else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_w'))){
+                start_row_up = i;
+                start_column_up = j;
+                break;
+            }
+            start_row_up = i;
+            start_column_up = j;
+                
+        } 
+
+        if(cells[start_row_up][start_column_up].children.length == 1)
+            if(cells[start_row_up][start_column_up].children[0].id.match('queen_b') ||
+                cells[start_row_up][start_column_up].children[0].id.match('bishop_b')){
+                    undo();
+                    king.style.color = 'red';
+                    check_flag = true;
+                    console.log('check');
+                }
+        if(cells[start_row_down][start_column_down].children.length == 1)
+            if(cells[start_row_down][start_column_down].children[0].id.match('queen_b') ||
+                cells[start_row_down][start_column_down].children[0].id.match('bishop_b')){
+                    undo();
+                    king.style.color = 'red';
+                    check_flag = true;
+                    console.log('check');
+                }
+        if(cells[end_row_up][end_column_up].children.length == 1)
+            if(cells[end_row_up][end_column_up].children[0].id.match('queen_b') ||
+                cells[end_row_up][end_column_up].children[0].id.match('bishop_b')){
+                    undo();
+                    king.style.color = 'red';
+                    check_flag = true;
+                    console.log('check');
+                }
+        if(cells[end_row_down][end_column_down].children.length == 1)
+            if(cells[end_row_down][end_column_down].children[0].id.match('queen_b') ||
+                cells[end_row_down][end_column_down].children[0].id.match('bishop_b')){
+                    undo();
+                    king.style.color = 'red';
+                    check_flag = true;
+                    console.log('check');
+                }
+        /*
+        for(i = start_row_down, j = start_column_down ; (i <= end_row_up && j <= end_column_up) ; i++,  j++){
+            if(cells[i][j].children.length == 0){
+                //console.log('khali',i,j);
+                cells[i][j].append(highlight(item,cells[i][j]));
+            }
+            else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_w'))){
+                //console.log('por',i,j);
+                cells[i][j].append(highlight(item,cells[i][j]));
+            }
+                    
+        }       
+        for(i = start_row_up, j = start_column_up ; (i >= end_row_down && j <= end_column_down) ; i--,  j++){
+            if(cells[i][j].children.length == 0){
+                //console.log('khali',i,j);
+                cells[i][j].append(highlight(item,cells[i][j]));
+            }
+            else if((cells[i][j].children.length == 1)&&(!cells[i][j].children[0].id.match('_w'))){
+                //console.log('por',i,j);
+                cells[i][j].append(highlight(item,cells[i][j]));
+            }
+                
+        }*/  
+    }
+
+    
+}
+
+
 function move(item,target){
     
-    
+
     target.append(item);
     white = !(white);
+    king.style.color = 'white';
+    check();
+    
+
     //console.log(item,target);
 }
 
@@ -258,6 +543,8 @@ function highlight_remover(id) {
     }
 
 }
+
+
 
 function road_map(item) {
     const row       = parseInt(item.parentElement.id[1])-1;
@@ -1519,6 +1806,8 @@ function road_map(item) {
                 
         }  
     }
+
+    
                 
     
 }
